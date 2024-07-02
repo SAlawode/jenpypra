@@ -1,14 +1,6 @@
 pipeline {
     agent any
 
-    stages {
-        stage('Checkout') {
-            steps {
-                // Clone the repository containing the palindrome-finding script
-                git 'https://your-repository-url.git'
-            }
-        }
-
         stage('Setup Python') {
             steps {
                 // Check if Python is installed and print the version
