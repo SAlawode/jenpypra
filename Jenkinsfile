@@ -5,7 +5,7 @@ pipeline {
         stage('Setup Python') {
             steps {
                 // Install Python and necessary dependencies
-                sh 'python --version' // Check if Python is installed
+                sh 'python3 --version' // Check if Python is installed
                 sh 'pip install --upgrade pip' // Upgrade pip
             }
         }
