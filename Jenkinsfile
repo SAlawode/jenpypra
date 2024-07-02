@@ -2,18 +2,27 @@ pipeline {
     agent any
 
     stages {
+        stage('Checkout') {
+            steps {
+                // Clone the repository containing the palindrome-finding script
+                git 'https://your-repository-url.git'
+            }
+        }
+
         stage('Setup Python') {
             steps {
-                // Install Python and necessary dependencies
-                sh 'python3 --version' // Check if Python is installed
-                sh 'pip install --upgrade pip' // Upgrade pip
+                // Check if Python is installed and print the version
+                sh 'python --version || python3 --version' // Check for python or python3 and print the version
+                // Upgrade pip and print the version
+                sh 'pip --version || pip3 --version'
+                sh 'pip install --upgrade pip || pip3 install --upgrade pip'
             }
         }
 
         stage('Run Script') {
             steps {
                 // Run the palindrome-finding script
-                sh 'python palindrome_finder.py'
+                sh 'python palindrome_finder.py || python3 palindrome_finder.py' // Ensure the script path is correct
             }
         }
     }
