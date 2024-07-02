@@ -1,10 +1,29 @@
 pipeline {
-    agent { docker { image 'python:3.12.4-alpine3.20' } }
+    agent any
+
     stages {
-        stage('build') {
+        stage('Setup Python') {
             steps {
-                sh 'python --version'
+                // Install Python and necessary dependencies
+                sh 'python --version' // Check if Python is installed
+                sh 'pip install --upgrade pip' // Upgrade pip
             }
+        }
+
+        stage('Run Script') {
+            steps {
+                // Run the palindrome-finding script
+                sh 'python palindrome_finder.py'
+            }
+        }
+    }
+
+    post {
+        success {
+            echo 'The palindrome script ran successfully!'
+        }
+        failure {
+            echo 'The palindrome script failed.'
         }
     }
 }
