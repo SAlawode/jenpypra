@@ -35,15 +35,15 @@ pipeline {
     post {
         success {
             echo 'Pipeline completed successfully!'
-            slackSend(channel: 'gogetters', color: '#00FF00', message: "Job '${env.JOB_NAME} [${env.BUILD_NUMBER}]' succeeded")
+            slackSend(channel: 'jenkins', color: '#00FF00', message: "Job '${env.JOB_NAME} [${env.BUILD_NUMBER}]' succeeded")
         }
         failure {
             echo 'Pipeline failed!'
-            slackSend(channel: 'gogetters', color: '#FF0000', message: "Job '${env.JOB_NAME} [${env.BUILD_NUMBER}]' failed")
+            slackSend(channel: 'jenkins', color: '#FF0000', message: "Job '${env.JOB_NAME} [${env.BUILD_NUMBER}]' failed")
         }
         unstable {
             echo 'Pipeline is unstable!'
-            slackSend(channel: 'gogetters', color: '#FFFF00', message: "Job '${env.JOB_NAME} [${env.BUILD_NUMBER}]' is unstable")
+            slackSend(channel: 'jenkins', color: '#FFFF00', message: "Job '${env.JOB_NAME} [${env.BUILD_NUMBER}]' is unstable")
         }
         always {
             echo 'Pipeline finished!'
